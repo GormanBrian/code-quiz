@@ -1,15 +1,18 @@
 let timerEl = document.querySelector("#timer");
 
+let timeInterval;
+
+function clearTimer() {
+  clearInterval(timeInterval);
+  timerEl.textContent = "";
+}
+
 function startTimer() {
   let time = 60;
 
-  let timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     timerEl.textContent = "Time: " + time;
-
-    if (time === 0) {
-      clearInterval(timeInterval);
-    }
-
+    if (time === 0) clearTimer();
     time--;
   }, 1000);
 }
