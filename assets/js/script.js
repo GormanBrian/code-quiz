@@ -1,3 +1,4 @@
+let startButton = document.querySelector("#start-button");
 let timerEl = document.querySelector("#timer");
 
 let timeInterval;
@@ -24,3 +25,7 @@ function startTimer(duration = 60) {
     time--;
   }, 1000);
 }
+
+function startQuiz() {}
+
+startButton.addEventListener("click", startQuiz);
