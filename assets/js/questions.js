@@ -1,5 +1,6 @@
-const questions = [
+let questions = [
   {
+    id: 0,
     text: "What type of language is JavaScript",
     answers: [
       {
@@ -22,6 +23,7 @@ const questions = [
     correctAnswerId: 1,
   },
   // {
+  //   id: 1,
   //   text: "",
   //   answers: [
   //     {
@@ -44,6 +46,7 @@ const questions = [
   //   correctAnswerId: 0,
   // },
   // {
+  //   id: 2,
   //   text: "",
   //   answers: [
   //     {
@@ -66,6 +69,7 @@ const questions = [
   //   correctAnswerId: 0,
   // },
   // {
+  //   id: 3,
   //   text: "",
   //   answers: [
   //     {
@@ -88,6 +92,8 @@ const questions = [
   //   correctAnswerId: 0,
   // },
 ];
+
+let currentQuestion;
 
 /**
  * Durstenfeld shuffle algorithm to randomize array elements
