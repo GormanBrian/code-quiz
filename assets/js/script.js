@@ -1,7 +1,7 @@
 let startButton = document.querySelector("#start-button");
 let timerEl = document.querySelector("#timer");
 
-let timeInterval;
+let timeInterval, time;
 
 /**
  * Clear timeInterval and set the text content to an empty string
@@ -16,16 +16,18 @@ function clearTimer() {
  * @param {number} duration How many seconds to run timer
  */
 function startTimer(duration = 60) {
-  let time = duration;
+  time = duration;
   timeInterval = setInterval(function () {
     timerEl.textContent = "Time: " + time;
-    if (time === 0) {
+    if (time <= 0) {
       clearTimer();
     }
     time--;
   }, 1000);
 }
 
-function startQuiz() {}
+function startQuiz() {
+  startTimer();
+}
 
 startButton.addEventListener("click", startQuiz);
