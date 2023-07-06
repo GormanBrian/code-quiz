@@ -29,7 +29,14 @@ function startTimer(duration = 60) {
   }, 1000);
 }
 
-function displayResult(result) {}
+function displayResult(result) {
+  if (!result) {
+    time -= 10;
+    questionResultEl.textContent = "INCORRECT!";
+  } else {
+    questionResultEl.textContent = "CORRECT!";
+  }
+}
 
 function answerQuestion(event) {
   let element = event.target;
