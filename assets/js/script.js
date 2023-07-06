@@ -5,6 +5,7 @@ let questionContainerEl = document.querySelector("#question-container");
 let questionResultEl = document.querySelector("#question-result");
 
 let timeInterval, time;
+let currentIndex;
 
 /**
  * Clear timeInterval and set the text content to an empty string
@@ -44,31 +45,26 @@ function answerQuestion(event) {
     return;
   }
 
-  console.log("Matches button");
   let userAnswer = element.getAttribute("data-id");
+  displayResult(userAnswer === question[currentIndex].correctAnswer);
 
-  displayResult(userAnswer === currentQuestion.correctAnswer);
+  currentIndex++;
+  if (currentIndex < questions.length) {
+    displayQuestion();
+  } else {
+    // Finished game
+  }
 }
 
-/**
- *
- * @param {Object} question
- * @param {string} question.text
- * @param {Array<Object>} question.answers
- * @param {string} question.answers.id
- * @param {string} question.answers.text
- */
-function displayQuestion(question) {
-  currentQuestion = question;
-
+function displayQuestion() {
   questionContainerEl.innerHTML = "";
 
   let questionTextEl = document.createElement("h1");
-  questionTextEl.textContent = currentQuestion.text;
+  questionTextEl.textContent = question[currentIndex].text;
   questionContainerEl.insertBefore(questionTextEl, questionResultEl);
 
   let questionListEl = document.createElement("ul");
-  currentQuestion.answers.forEach(({ text, id }) => {
+  question[currentIndex].answers.forEach(({ text, id }) => {
     console.log(text);
     let answerEl = document.createElement("button");
     answerEl.textContent = text;
@@ -82,6 +78,7 @@ function displayQuestion(question) {
 function startQuiz() {
   startTimer();
   questions = shuffle(questions);
+  currentIndex = 0;
   displayQuestion(questions[0]);
 }
 
