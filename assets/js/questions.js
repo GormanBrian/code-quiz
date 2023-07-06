@@ -1,6 +1,5 @@
 let questions = [
   {
-    id: 0,
     text: "What type of language is JavaScript",
     answers: [
       {
@@ -23,7 +22,6 @@ let questions = [
     correctAnswerId: 1,
   },
   // {
-  //   id: 1,
   //   text: "",
   //   answers: [
   //     {
@@ -46,7 +44,6 @@ let questions = [
   //   correctAnswerId: 0,
   // },
   // {
-  //   id: 2,
   //   text: "",
   //   answers: [
   //     {
@@ -69,7 +66,6 @@ let questions = [
   //   correctAnswerId: 0,
   // },
   // {
-  //   id: 3,
   //   text: "",
   //   answers: [
   //     {

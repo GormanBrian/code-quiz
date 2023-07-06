@@ -46,24 +46,29 @@ function answerQuestion(event) {
 
   console.log("Matches button");
   let userAnswer = element.getAttribute("data-id");
-  let questionId = questionContainerEl.getAttribute("data-id");
-  let correctAnswer = questions.find(
-    (q) => q.id === questionId
-  ).correctAnswerId;
 
-  displayResult(userAnswer === correctAnswer);
+  displayResult(userAnswer === currentQuestion.correctAnswer);
 }
 
+/**
+ *
+ * @param {Object} question
+ * @param {string} question.text
+ * @param {Array<Object>} question.answers
+ * @param {string} question.answers.id
+ * @param {string} question.answers.text
+ */
 function displayQuestion(question) {
+  currentQuestion = question;
+
   questionContainerEl.innerHTML = "";
-  questionContainerEl.setAttribute("data-id", question.id);
 
   let questionTextEl = document.createElement("h1");
-  questionTextEl.textContent = question.text;
+  questionTextEl.textContent = currentQuestion.text;
   questionContainerEl.insertBefore(questionTextEl, questionResultEl);
 
   let questionListEl = document.createElement("ul");
-  question.answers.forEach(({ text, id }) => {
+  currentQuestion.answers.forEach(({ text, id }) => {
     console.log(text);
     let answerEl = document.createElement("button");
     answerEl.textContent = text;
