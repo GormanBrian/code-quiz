@@ -10,9 +10,10 @@ let gameResultDetailsEl = document.createElement("h3");
 let timeInterval, time;
 let currentIndex;
 
-/**
- * Clear timeInterval and set the text content to an empty string
- */
+function navigate(result) {
+  localStorage.setItem("currentScore", result);
+  window.location.href = "./highscores.html";
+}
 
 function endGame() {
   // Clear the timer
@@ -44,12 +45,8 @@ function endGame() {
   questionContainerEl.appendChild(gameResultDetailsEl);
 
   setTimeout(() => {
-    if (time <= 0) {
-      localStorage.setItem("current-score", -1);
-    } else {
-      localStorage.setItem("current-score", time);
-    }
-    window.location.href = "./highscores.html";
+    let res = time <= 0 ? -1 : time;
+    navigate(res);
   }, 5000);
 }
 
