@@ -1,4 +1,5 @@
 // Get the existing elements
+let mainEl = document.querySelector("main");
 let highScoresContainerEl = document.querySelector("#high-scores-container");
 let backButtonEl = document.querySelector("#back-button");
 // Create form
@@ -6,14 +7,40 @@ let newEntryFormEl = document.createElement("form");
 let newEntryInputEl = document.createElement("input");
 
 let newScore;
+let scores = [];
+
+function getScores() {
+  let scoresArr = JSON.parse(localStorage.getItem("scores"));
+  return scoresArr === null ? [] : scoresArr;
+}
+
+function showHighScoresList() {
+  highScoresContainerEl.innerHTML = "";
+  scores = getScores();
+
+  let highScoresListEl = document.createElement("ol");
+  scores.forEach(({ initials, time }, index) => {
+    let highScoreListItemEl = document.createElement("li");
+
+    let highScoreInitialsEl = document.createElement("p");
+    highScoreInitialsEl.textContent = initials;
+
+    let highScoreTimeEl = document.createElement("h3");
+    highScoreTimeEl.textContent = time;
+
+    highScoreListItemEl.appendChild(highScoreInitialsEl);
+    highScoreListItemEl.appendChild(highScoreTimeEl);
+    highScoresListEl.appendChild(highScoreListItemEl);
+  });
+
+  highScoresContainerEl.appendChild(highScoresListEl);
+}
 
 function submitNewEntryForm(event) {
   event.preventDefault();
+  mainEl.removeChild(newEntryFormEl);
 
-  let scores = JSON.parse(localStorage.getItem("scores"));
-  if (scores === null) {
-    scores = [];
-  }
+  scores = getScores();
 
   scores.push({
     initials: newEntryInputEl.value.trim(),
@@ -22,6 +49,8 @@ function submitNewEntryForm(event) {
 
   scores = scores.sort((a, b) => b.score - a.score);
   localStorage.setItem("scores", JSON.stringify(scores));
+
+  showHighScoresList();
 }
 
 function showNewEntryForm() {
@@ -36,7 +65,8 @@ function showNewEntryForm() {
 
   newEntryFormEl.appendChild(newEntryLabelEl);
   newEntryFormEl.appendChild(newEntryInputEl);
-  highScoresContainerEl.appendChild(newEntryFormEl);
+
+  mainEl.appendChild(newEntryFormEl);
 }
 
 // Navigate back to main page
@@ -47,9 +77,6 @@ function start() {
   newScore = JSON.parse(localStorage.getItem("new-score"));
   if (newScore === -1 || newScore === null) {
     // Just show the scores
-  } else {
-    // Get the new scores
-    showNewEntryForm();
   }
 }
 
