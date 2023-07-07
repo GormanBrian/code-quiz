@@ -30,6 +30,10 @@ function startTimer(duration = 60) {
   }, 1000);
 }
 
+/**
+ * Display the result of the previous answer
+ * @param {Boolean} result True for correct, false for incorrect
+ */
 function displayResult(result) {
   if (!result) {
     time -= 10;
@@ -76,9 +80,17 @@ function displayQuestion() {
 }
 
 function startQuiz() {
+  // Hide the start section
+  let startSectionEl = document.querySelector("#start-section");
+  startSectionEl.style.display = "none";
+
+  // Start the timer
   startTimer();
+  // Shuffle questions
   questions = shuffle(questions);
+  // Start at index 0
   currentIndex = 0;
+  // Start the first question
   displayQuestion(questions[0]);
 }
 
