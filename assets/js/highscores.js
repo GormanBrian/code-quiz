@@ -9,10 +9,12 @@ let newEntryInputEl = document.createElement("input");
 let newScore;
 let scores = [];
 
-function getScores() {
-  let scoresArr = JSON.parse(localStorage.getItem("scores"));
-  return scoresArr === null ? [] : scoresArr;
+function getLocalStorageItem(key, defaultValue) {
+  let item = JSON.parse(localStorage.getItem(key));
+  return item === null ? defaultValue : item;
 }
+
+let getScores = () => getLocalStorageItem("scores", []);
 
 function showHighScoresList() {
   highScoresContainerEl.innerHTML = "";
