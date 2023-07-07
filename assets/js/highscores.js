@@ -6,22 +6,20 @@ let backButtonEl = document.querySelector("#back-button");
 let newEntryFormEl = document.createElement("form");
 let newEntryInputEl = document.createElement("input");
 
-let newScore;
-let scores = [];
-
 function getLocalStorageItem(key, defaultValue) {
   let item = JSON.parse(localStorage.getItem(key));
   return item === null ? defaultValue : item;
 }
 
 let getScores = () => getLocalStorageItem("scores", []);
+let getNewScore = () => getLocalStorageItem("new-score", -1);
 
 function showHighScoresList() {
   highScoresContainerEl.innerHTML = "";
-  scores = getScores();
+  let scores = getScores();
 
   let highScoresListEl = document.createElement("ol");
-  scores.forEach(({ initials, time }, index) => {
+  scores.forEach(({ initials, time }) => {
     let highScoreListItemEl = document.createElement("li");
 
     let highScoreInitialsEl = document.createElement("p");
@@ -42,15 +40,15 @@ function submitNewEntryForm(event) {
   event.preventDefault();
   mainEl.removeChild(newEntryFormEl);
 
-  scores = getScores();
+  let oldScores = getScores();
 
-  scores.push({
+  oldScores.push({
     initials: newEntryInputEl.value.trim(),
-    time: newScore,
+    time: getNewScore(),
   });
 
-  scores = scores.sort((a, b) => b.score - a.score);
-  localStorage.setItem("scores", JSON.stringify(scores));
+  oldScores = oldScores.sort((a, b) => b.score - a.score);
+  localStorage.setItem("scores", JSON.stringify(oldScores));
 
   showHighScoresList();
 }
@@ -76,9 +74,10 @@ backButtonEl.addEventListener("click", () => navigate("index.html"));
 newEntryFormEl.addEventListener("submit", submitNewEntryForm);
 
 function start() {
-  newScore = JSON.parse(localStorage.getItem("new-score"));
-  if (newScore === -1 || newScore === null) {
-    // Just show the scores
+  showHighScoresList();
+  newScore = getNewScore();
+  if (newScore !== -1) {
+    showNewEntryForm();
   }
 }
 
