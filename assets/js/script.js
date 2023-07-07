@@ -11,7 +11,7 @@ let timeInterval, time;
 let currentIndex;
 
 function navigate(result) {
-  localStorage.setItem("currentScore", result);
+  localStorage.setItem("new-score", result);
   window.location.href = "./highscores.html";
 }
 
