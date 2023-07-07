@@ -3,7 +3,7 @@
  * @param {string} to Location to navigate to
  * @param {number} result Sets the new-score localStorage variable
  */
-function navigate(to, result) {
+function navigate(to, result = -1) {
   localStorage.setItem("new-score", result);
   window.location.href = to;
 }

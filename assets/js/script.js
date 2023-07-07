@@ -1,5 +1,7 @@
-let startButton = document.querySelector("#start-button");
+let highScoresButtonEl = document.querySelector("#high-scores-button");
 let timerEl = document.querySelector("#timer");
+
+let startButtonEl = document.querySelector("#start-button");
 
 let questionContainerEl = document.querySelector("#question-container");
 let questionResultEl = document.querySelector("#question-result");
@@ -41,7 +43,7 @@ function endGame() {
 
   setTimeout(() => {
     let res = time <= 0 ? -1 : time;
-    navigate("./highscores.html", res);
+    navigate("highscores.html", res);
   }, 5000);
 }
 
@@ -97,7 +99,6 @@ function answerQuestion(event) {
   if (currentIndex < questions.length) {
     displayQuestion();
   } else {
-    // Finished game
     endGame();
   }
 }
@@ -123,8 +124,7 @@ function displayQuestion() {
 
 function startQuiz() {
   // Hide the start section
-  let startSectionEl = document.querySelector("#start-section");
-  startSectionEl.style.display = "none";
+  document.querySelector("#start-section").style.display = "none";
 
   // Start the timer
   startTimer();
@@ -136,5 +136,6 @@ function startQuiz() {
   displayQuestion(questions[0]);
 }
 
-startButton.addEventListener("click", startQuiz);
+highScoresButtonEl.addEventListener("click", () => navigate("highscores.html"));
+startButtonEl.addEventListener("click", startQuiz);
 questionContainerEl.addEventListener("click", answerQuestion);

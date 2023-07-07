@@ -40,10 +40,7 @@ function showNewEntryForm() {
 }
 
 // Navigate back to main page
-backButtonEl.addEventListener("click", () => {
-  window.location.href = "index.html";
-});
-
+backButtonEl.addEventListener("click", () => navigate("index.html"));
 newEntryFormEl.addEventListener("submit", submitNewEntryForm);
 
 function start() {
