@@ -4,15 +4,53 @@ let timerEl = document.querySelector("#timer");
 let questionContainerEl = document.querySelector("#question-container");
 let questionResultEl = document.querySelector("#question-result");
 
+let gameResultTitleEl = document.createElement("h1");
+let gameResultDetailsEl = document.createElement("h3");
+
 let timeInterval, time;
 let currentIndex;
 
 /**
  * Clear timeInterval and set the text content to an empty string
  */
-function clearTimer() {
+
+function endGame() {
+  // Clear the timer
   clearInterval(timeInterval);
   timerEl.textContent = "";
+  // Remove the last question from the container
+  questionContainerEl.innerHTML = "";
+
+  // Create result elements
+
+  gameResultTitleEl.setAttribute("id", "game-result");
+  gameResultDetailsEl.setAttribute("id", "game-result-details");
+
+  // Display correct message based on result
+  if (time <= 0) {
+    gameResultTitleEl.textContent = "YOU LOSE...";
+    gameResultTitleEl.style.color = "red";
+    gameResultDetailsEl.textContent = `You had ${
+      questions.length - currentIndex
+    } questions left.`;
+  } else {
+    gameResultTitleEl.textContent = "YOU WIN!!!";
+    gameResultTitleEl.style.color = "green";
+    gameResultDetailsEl.textContent = `Your score is ${time}!`;
+  }
+
+  // Add result elements to container
+  questionContainerEl.appendChild(gameResultTitleEl);
+  questionContainerEl.appendChild(gameResultDetailsEl);
+
+  setTimeout(() => {
+    if (time <= 0) {
+      localStorage.setItem("current-score", -1);
+    } else {
+      localStorage.setItem("current-score", time);
+    }
+    window.location.href = "./highscores.html";
+  }, 5000);
 }
 
 /**
@@ -24,7 +62,7 @@ function startTimer(duration = 60) {
   timeInterval = setInterval(() => {
     timerEl.textContent = "Time: " + time;
     if (time <= 0) {
-      clearTimer();
+      endGame();
     }
     time--;
   }, 1000);
@@ -41,6 +79,17 @@ function displayResult(result) {
   } else {
     questionResultEl.textContent = "CORRECT!";
   }
+
+  let fadeEffect = setInterval(function () {
+    if (!questionResultEl.style.opacity) {
+      questionResultEl.style.opacity = 1;
+    }
+    if (questionResultEl.style.opacity > 0) {
+      questionResultEl.style.opacity -= 0.1;
+    } else {
+      clearInterval(fadeEffect);
+    }
+  }, 200);
 }
 
 function answerQuestion(event) {
@@ -50,13 +99,14 @@ function answerQuestion(event) {
   }
 
   let userAnswer = element.getAttribute("data-id");
-  displayResult(userAnswer === question[currentIndex].correctAnswer);
+  displayResult(userAnswer === questions[currentIndex].correctAnswer);
 
   currentIndex++;
   if (currentIndex < questions.length) {
     displayQuestion();
   } else {
     // Finished game
+    endGame();
   }
 }
 
@@ -64,11 +114,11 @@ function displayQuestion() {
   questionContainerEl.innerHTML = "";
 
   let questionTextEl = document.createElement("h1");
-  questionTextEl.textContent = question[currentIndex].text;
-  questionContainerEl.insertBefore(questionTextEl, questionResultEl);
+  questionTextEl.textContent = questions[currentIndex].text;
+  questionContainerEl.appendChild(questionTextEl);
 
   let questionListEl = document.createElement("ul");
-  question[currentIndex].answers.forEach(({ text, id }) => {
+  questions[currentIndex].answers.forEach(({ text, id }) => {
     console.log(text);
     let answerEl = document.createElement("button");
     answerEl.textContent = text;
@@ -76,7 +126,7 @@ function displayQuestion() {
     questionListEl.appendChild(answerEl);
   });
 
-  questionContainerEl.insertBefore(questionListEl, questionResultEl);
+  questionContainerEl.appendChild(questionListEl);
 }
 
 function startQuiz() {
