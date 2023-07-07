@@ -65,13 +65,18 @@ function showHighScoresList() {
 function submitNewEntryForm(event) {
   // Prevent reload of page
   event.preventDefault();
+
+  let newEntryValue = newEntryInputEl.value.trim();
+  // Return if no initials were provided
+  if (newEntryValue === "") return;
+
   // Remove the form from the page
   mainEl.removeChild(newEntryFormEl);
   // Get current high scores
   let oldScores = getScores();
   // Add the new score to the current array
   oldScores.push({
-    initials: newEntryInputEl.value.trim(),
+    initials: newEntryValue,
     time: getNewScore(),
   });
   // Sort array by descending scores
