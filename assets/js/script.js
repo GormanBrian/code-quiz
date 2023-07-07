@@ -10,11 +10,6 @@ let gameResultDetailsEl = document.createElement("h3");
 let timeInterval, time;
 let currentIndex;
 
-function navigate(result) {
-  localStorage.setItem("new-score", result);
-  window.location.href = "./highscores.html";
-}
-
 function endGame() {
   // Clear the timer
   clearInterval(timeInterval);
@@ -46,7 +41,7 @@ function endGame() {
 
   setTimeout(() => {
     let res = time <= 0 ? -1 : time;
-    navigate(res);
+    navigate("./highscores.html", res);
   }, 5000);
 }
 
@@ -67,7 +62,7 @@ function startTimer(duration = 60) {
 
 /**
  * Display the result of the previous answer
- * @param {Boolean} result True for correct, false for incorrect
+ * @param {boolean} result True for correct, false for incorrect
  */
 function displayResult(result) {
   if (!result) {
