@@ -8,7 +8,7 @@ let questionContainerEl = document.querySelector("#question-container");
 let questionResultEl = document.querySelector("#question-result");
 // Create game result elements
 let gameResultTitleEl = document.createElement("h1");
-let gameResultDetailsEl = document.createElement("h3");
+let gameResultDetailsEl = document.createElement("p");
 
 let fadeEffect, timeInterval, time, currentIndex;
 
@@ -27,14 +27,14 @@ function endGame() {
   if (time <= 0) {
     // Display losing message
     gameResultTitleEl.textContent = "YOU LOSE...";
-    gameResultTitleEl.style.color = "red";
+    gameResultTitleEl.setAttribute("class", "game-result-lose");
     gameResultDetailsEl.textContent = `You had ${
       questions.length - currentIndex
     } questions left.`;
   } else {
     // Display winning message
     gameResultTitleEl.textContent = "YOU WIN!";
-    gameResultTitleEl.style.color = "green";
+    gameResultTitleEl.setAttribute("class", "game-result-win");
     gameResultDetailsEl.textContent = `Your score is ${time}!`;
   }
 

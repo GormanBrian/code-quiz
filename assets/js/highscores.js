@@ -33,7 +33,7 @@ function showHighScoresList() {
   // Create the high scores ordered list
   let highScoresListEl = document.createElement("ol");
   // Add each high score from the array to the list
-  scores.forEach(({ initials, time }) => {
+  scores.forEach(({ initials, time }, index) => {
     // Create the high score list item
     let highScoreListItemEl = document.createElement("li");
 
@@ -48,6 +48,9 @@ function showHighScoresList() {
     /* Add the property elements to the list item */
     highScoreListItemEl.appendChild(highScoreInitialsEl);
     highScoreListItemEl.appendChild(highScoreTimeEl);
+    if (index === 0 || index % 2 === 0) {
+      highScoreListItemEl.setAttribute("class", "alternate-item");
+    }
     /* */
 
     // Add the list item to the list
@@ -71,7 +74,7 @@ function submitNewEntryForm(event) {
   if (newEntryValue === "") return;
 
   // Remove the form from the page
-  mainEl.removeChild(newEntryFormEl);
+  newEntryFormEl.innerHTML = "";
   // Get current high scores
   let oldScores = getScores();
   // Add the new score to the current array
