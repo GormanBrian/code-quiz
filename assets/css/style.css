@@ -52,7 +52,9 @@ main {
   color: var(--onyx);
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 4rem;
+  flex-direction: column;
 }
 
 section {
@@ -94,6 +96,29 @@ section {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+#question-container ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+#question-container button {
+  font-size: 1.75rem;
+  height: 6rem;
+  min-width: 200px;
+  padding: 0.5rem;
+  background-color: var(--cadet-gray);
+  color: var(--onyx);
+}
+
+#question-container button:hover {
+  background-color: var(--moutbatten-pink);
 }
 
 #question-result {

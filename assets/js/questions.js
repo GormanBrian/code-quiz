@@ -1,6 +1,6 @@
 let questions = [
   {
-    text: "What type of language is JavaScript",
+    text: "What type of language is JavaScript?",
     answers: [
       {
         id: 0,
@@ -21,72 +21,94 @@ let questions = [
     ],
     correctAnswerId: 1,
   },
-  // {
-  //   text: "",
-  //   answers: [
-  //     {
-  //       id: 0,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 1,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 2,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 3,
-  //       text: "",
-  //     },
-  //   ],
-  //   correctAnswerId: 0,
-  // },
-  // {
-  //   text: "",
-  //   answers: [
-  //     {
-  //       id: 0,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 1,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 2,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 3,
-  //       text: "",
-  //     },
-  //   ],
-  //   correctAnswerId: 0,
-  // },
-  // {
-  //   text: "",
-  //   answers: [
-  //     {
-  //       id: 0,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 1,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 2,
-  //       text: "",
-  //     },
-  //     {
-  //       id: 3,
-  //       text: "",
-  //     },
-  //   ],
-  //   correctAnswerId: 0,
-  // },
+  {
+    text: "What is Bootstrap?",
+    answers: [
+      {
+        id: 0,
+        text: "A programming language",
+      },
+      {
+        id: 1,
+        text: "A CSS framework",
+      },
+      {
+        id: 2,
+        text: "A JavaScript framework",
+      },
+      {
+        id: 3,
+        text: "An HTML framework",
+      },
+    ],
+    correctAnswerId: 1,
+  },
+  {
+    text: "How do you get the length of an array?",
+    answers: [
+      {
+        id: 0,
+        text: "array.numberOfItems",
+      },
+      {
+        id: 1,
+        text: "array.getLength()",
+      },
+      {
+        id: 2,
+        text: "array.count",
+      },
+      {
+        id: 3,
+        text: "array.length",
+      },
+    ],
+    correctAnswerId: 3,
+  },
+  {
+    text: "What attribute tells a link where to go?",
+    answers: [
+      {
+        id: 0,
+        text: "a",
+      },
+      {
+        id: 1,
+        text: "rel",
+      },
+      {
+        id: 2,
+        text: "href",
+      },
+      {
+        id: 3,
+        text: "to",
+      },
+    ],
+    correctAnswerId: 2,
+  },
+  {
+    text: "What command syncs your local code with a remote repository?",
+    answers: [
+      {
+        id: 0,
+        text: "git push",
+      },
+      {
+        id: 1,
+        text: "git add",
+      },
+      {
+        id: 2,
+        text: "git commit",
+      },
+      {
+        id: 3,
+        text: "git pull",
+      },
+    ],
+    correctAnswerId: 3,
+  },
 ];
 
 let currentQuestion;
