@@ -49,7 +49,7 @@ function endGame() {
     let res = time <= 0 ? -1 : time;
     // Go to the high scores screen
     navigate("highscores.html", res);
-  }, 5000);
+  }, 2500);
 }
 
 /**

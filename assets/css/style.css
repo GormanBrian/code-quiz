@@ -70,6 +70,11 @@ section {
   max-width: 600px;
 }
 
+#start-section p {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
 #start-button {
   width: 200px;
   line-height: 2.5rem;
@@ -114,7 +119,6 @@ section {
   min-width: 200px;
   padding: 0.5rem;
   background-color: var(--cadet-gray);
-  color: var(--onyx);
 }
 
 #question-container button:hover {
@@ -122,21 +126,21 @@ section {
 }
 
 #question-result {
-  margin-top: 25px;
-  font-size: 2rem;
+  position: fixed;
+  font-size: 4rem;
+  bottom: 50px;
 }
 
 /* RESULT */
 
 #game-result {
-  font-size: 3rem;
+  font-size: 6rem;
   text-align: center;
-  margin-bottom: 50px;
 }
 
-#game-result-detail {
+#game-result-details {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 2.5rem;
 }
 
 .game-result-lose {
